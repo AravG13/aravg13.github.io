@@ -24,3 +24,27 @@ color:#0077cc;
 h1{
 font-size:36px;
 }
+
+.profile{
+width:200px;
+border-radius:50%;
+display:block;
+margin:auto;
+margin-bottom:20px;
+}
+
+.project{
+margin-bottom:40px;
+display:flex;
+gap:20px;
+align-items:center;
+}
+
+.project img{
+width:200px;
+border-radius:10px;
+}
+
+.project p{
+max-width:600px;
+}
