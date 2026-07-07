@@ -1,51 +1,81 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-<title>About Me</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Arav Gupta</title>
 <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<nav>
-<a href="index.html">Home</a>
-<a href="about.html">About Me</a>
-<a href="projects.html">Projects</a>
-<a href="cv.html">CV</a>
+<header class="site-header">
+<nav class="nav">
+<a href="index.html" class="nav-brand">ARAV<span>.</span>GUPTA</a>
+<ul class="nav-links">
+<li><a href="index.html"><span class="idx">01_</span>HOME</a></li>
+<li><a href="about.html"><span class="idx">02_</span>ABOUT</a></li>
+<li><a href="projects.html"><span class="idx">03_</span>PROJECTS</a></li>
+<li><a href="blog.html"><span class="idx">04_</span>BLOG</a></li>
+<li><a href="media.html"><span class="idx">05_</span>MEDIA</a></li>
+<li><a href="cv.html"><span class="idx">06_</span>CV</a></li>
+</ul>
 </nav>
+</header>
 
+<main class="wrap">
+
+<section style="margin-top:56px;">
+<div class="eyebrow">// 02 ABOUT</div>
 <h1>About Me</h1>
 
 <p>
-I am a third-year undergraduate student at BITS Pilani studying Electronics and Communications Engineering. I am an aspiring researcher, currently exploring various domains and trying to expand my knowledge and experience. I love learning new things and am always looking for opportunities to grow and contribute to the field of robotics and AI. I am currently working on Cooperative Embodied Agent systems and computer vision. I also love watching movies,reading, and working out to pass time :)
+I'm a third-year undergraduate at BITS Pilani, studying Electronics and
+Communications Engineering. I'm an aspiring researcher, currently
+exploring cooperative embodied agent systems and computer vision, and
+generally trying to expand what I know and can build.
 </p>
 
 <p>
-My research interests include, but not limited to:
+Outside the lab I watch a lot of films, read, and lift weights to keep
+my head clear.
 </p>
+</section>
 
-<ul>
-<li>Embodied AI</li>
-<li>Mobile robotics</li>
-<li>Drone autonomy</li>
-<li>Multi-agent systems</li>
-<li>Computer Vision</li>
-<li>Vision-Language Navigation</li>
-<li>Embedded Systems</li>
-</ul>
+<section>
+<div class="eyebrow">// RESEARCH INTERESTS</div>
+<div class="tag-row">
+<span class="tag">Embodied AI</span>
+<span class="tag">Mobile Robotics</span>
+<span class="tag">Drone Autonomy</span>
+<span class="tag">Multi-Agent Systems</span>
+<span class="tag">Computer Vision</span>
+<span class="tag">Vision-Language Navigation</span>
+<span class="tag">Embedded Systems</span>
+</div>
+</section>
 
-
-<h2>Technical Skills</h2>
-
+<section>
+<div class="eyebrow">// TECHNICAL SKILLS</div>
+<div class="cv-block">
 <ul>
 <li>ROS2, Gazebo, Nav2</li>
-<li>PX4 Simulation</li>
+<li>PX4 SITL / HITL Simulation</li>
 <li>Python, C++, MATLAB</li>
 <li>OpenCV</li>
 <li>Embedded Systems (ESP32, STM32, Raspberry Pi)</li>
 </ul>
+</div>
+</section>
 
+</main>
 
+<footer>
+<div class="wrap">
+<p>EMAIL: aravhfs@gmail.com</p>
+<p>GITHUB: github.com/AravG13</p>
+</div>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>

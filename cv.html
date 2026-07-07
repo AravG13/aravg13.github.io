@@ -1,33 +1,40 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-<title>CV - Arav Gupta</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV — Arav Gupta</title>
 <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<nav>
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="projects.html">Projects</a>
-<a href="cv.html">CV</a>
+<header class="site-header">
+<nav class="nav">
+<a href="index.html" class="nav-brand">ARAV<span>.</span>GUPTA</a>
+<ul class="nav-links">
+<li><a href="index.html"><span class="idx">01_</span>HOME</a></li>
+<li><a href="about.html"><span class="idx">02_</span>ABOUT</a></li>
+<li><a href="projects.html"><span class="idx">03_</span>PROJECTS</a></li>
+<li><a href="blog.html"><span class="idx">04_</span>BLOG</a></li>
+<li><a href="media.html"><span class="idx">05_</span>MEDIA</a></li>
+<li><a href="cv.html"><span class="idx">06_</span>CV</a></li>
+</ul>
 </nav>
+</header>
 
+<main class="wrap">
+
+<section style="margin-top:56px;">
+<div class="eyebrow">// 06 CV</div>
 <h1>Arav Gupta</h1>
-
-<p>
-Undergraduate Researcher in Robotics and Embodied AI <br>
-BITS Pilani <br>
-Email: aravhfs@gmail.com <br>
-GitHub: github.com/AravG13
+<p class="muted">
+Undergraduate Researcher in Robotics and Embodied AI · BITS Pilani<br>
+Email: aravhfs@gmail.com · GitHub: github.com/AravG13
 </p>
+</section>
 
-<hr>
-
-<h2>Research Interests</h2>
-
+<section class="cv-block">
+<div class="eyebrow">// RESEARCH INTERESTS</div>
 <ul>
 <li>Embodied AI</li>
 <li>Vision-Language Navigation</li>
@@ -35,69 +42,58 @@ GitHub: github.com/AravG13
 <li>Multi-Robot Systems</li>
 <li>Robot Perception</li>
 </ul>
+</section>
 
-<hr>
+<section class="cv-block">
+<div class="eyebrow">// EDUCATION</div>
+<p><b>B.E. Electronics and Communication Engineering</b><br>BITS Pilani</p>
+</section>
 
-<h2>Education</h2>
-
-<p>
-<b>B.E. Electronics and Communication Engineering</b> <br>
-BITS Pilani
-</p>
-
-<hr>
-
-<h2>Research Projects</h2>
-
+<section class="cv-block">
+<div class="eyebrow">// RESEARCH PROJECTS</div>
 <ul>
-
 <li>
-<b>Multi-Drone Object Tracking System</b> <br>
-PX4 + ROS2 system enabling cooperative drone tracking using vision-based perception, with a focus on real-time performance and robustness in dynamic environments, communication using Xbee.
+<b>Multi-Drone Object Tracking System</b> — PX4 + ROS2 system enabling cooperative drone tracking using vision-based perception, with a focus on real-time performance and robustness in dynamic environments, communicating over XBee.
 </li>
-
 <li>
-<b>Vision-Language Navigation Research</b> <br>
-Studying embodied agents capable of navigating environments using natural language instructions.
-Main research in the field of co-operative embodied agents, working on a novel architecture for multi-agent vision-language navigation.
+<b>Vision-Language Navigation Research</b> — Studying embodied agents that navigate environments from natural-language instructions; working on a novel architecture for cooperative multi-agent vision-language navigation.
 </li>
-
 <li>
-<b>LoRa Environmental Monitoring Network</b> <br>
-Distributed sensing system using ESP32 and LoRa mesh communication. 
+<b>LoRa Environmental Monitoring Network</b> — Distributed sensing system using ESP32 nodes and LoRa mesh communication.
 </li>
-
 <li>
-<b>Portable AQI Monitoring System</b> <br>
-Low-cost air quality monitoring module calibrated using CPCB AQI models.
+<b>Portable AQI Monitoring System</b> — Low-cost air-quality monitoring module calibrated against CPCB AQI models.
 </li>
-
 </ul>
+</section>
 
-<hr>
-
-<h2>Technical Skills</h2>
-
+<section class="cv-block">
+<div class="eyebrow">// TECHNICAL SKILLS</div>
 <ul>
-
 <li>ROS2, PX4, Gazebo</li>
 <li>Python, C++, MATLAB</li>
 <li>OpenCV</li>
 <li>Embedded Systems (ESP32, STM32, Raspberry Pi)</li>
-
 </ul>
+</section>
 
-<hr>
-
-<h2>Links</h2>
-
+<section class="cv-block">
+<div class="eyebrow">// LINKS</div>
 <ul>
-
 <li><a href="https://github.com/AravG13">GitHub</a></li>
-<li><a href="/assets/cv.pdf" target="_blank">Download CV (PDF)</a></li>
-
+<li><a href="assets/cv.pdf" target="_blank" rel="noopener">Download CV (PDF)</a></li>
 </ul>
+</section>
 
+</main>
+
+<footer>
+<div class="wrap">
+<p>EMAIL: aravhfs@gmail.com</p>
+<p>GITHUB: github.com/AravG13</p>
+</div>
+</footer>
+
+<script src="script.js"></script>
 </body>
-
 </html>

@@ -1,48 +1,96 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-<title>Arav Gupta</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arav Gupta — Robotics &amp; Embodied AI</title>
 <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<nav>
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="projects.html">Projects</a>
-<a href="cv.html">CV</a>
+<header class="site-header">
+<nav class="nav">
+<a href="index.html" class="nav-brand">ARAV<span>.</span>GUPTA</a>
+<ul class="nav-links">
+<li><a href="index.html"><span class="idx">01_</span>HOME</a></li>
+<li><a href="about.html"><span class="idx">02_</span>ABOUT</a></li>
+<li><a href="projects.html"><span class="idx">03_</span>PROJECTS</a></li>
+<li><a href="blog.html"><span class="idx">04_</span>BLOG</a></li>
+<li><a href="media.html"><span class="idx">05_</span>MEDIA</a></li>
+<li><a href="cv.html"><span class="idx">06_</span>CV</a></li>
+</ul>
 </nav>
+</header>
+
+<main class="wrap">
 
 <section class="intro">
-
-<img src="assets/me.jpeg" class="profile">
+<div class="reticle">
+<span class="tick-tl"></span><span class="tick-br"></span>
+<img src="assets/me.jpeg" alt="Arav Gupta">
+</div>
 
 <div>
 <h1>Arav Gupta</h1>
+<p class="role-line">UNDERGRADUATE RESEARCHER — BITS PILANI // ROBOTICS &amp; EMBODIED AI</p>
 
 <p>
-Undergraduate researcher at BITS Pilani working on robotics, embodied AI,
-and autonomous aerial systems.
+I build systems that let machines perceive, move, and coordinate with
+each other — mostly drones and ground robots, mostly at the intersection
+of vision, language, and control.
 </p>
 
 <p>
-My research interests include mobile robotics, multi-agent coordination,
-vision-language navigation, and drone autonomy.
+Currently working on cooperative embodied agents and multi-drone
+perception systems, alongside embedded sensing work grown out of an
+ISRO internship.
 </p>
 
+<div class="tag-row">
+<span class="tag">EMBODIED AI</span>
+<span class="tag">MULTI-AGENT SYSTEMS</span>
+<span class="tag">DRONE AUTONOMY</span>
+<span class="tag">VISION-LANGUAGE NAV</span>
+<span class="tag">EMBEDDED SYSTEMS</span>
 </div>
-
+</div>
 </section>
 
+<section>
+<div class="eyebrow">// CURRENT FOCUS</div>
+<div class="projects-grid">
 
+<div class="project-card">
+<div class="project-visual"><img src="assets/drone.png" alt="Multi-drone tracking diagram"></div>
+<div class="project-body">
+<span class="status-badge active">In Progress</span>
+<h3>Multi-Drone Object Tracking</h3>
+<p class="muted">PX4 + ROS2 system enabling multiple drones to cooperatively track objects in real time.</p>
+</div>
+</div>
+
+<div class="project-card">
+<div class="project-visual"><img src="assets/coela.jpg" alt="Vision-language navigation research"></div>
+<div class="project-body">
+<span class="status-badge active">In Progress</span>
+<h3>Vision-Language Navigation</h3>
+<p class="muted">A novel architecture for cooperative, language-conditioned multi-agent navigation.</p>
+</div>
+</div>
+
+</div>
+<p style="margin-top:18px;"><a href="projects.html">→ full project log, including completed builds &amp; write-ups</a></p>
+</section>
+
+</main>
 
 <footer>
-<p>Email: aravhfs@gmail.com</p>
-<p>GitHub: github.com/AravG13</p>
+<div class="wrap">
+<p>EMAIL: aravhfs@gmail.com</p>
+<p>GITHUB: github.com/AravG13</p>
+</div>
 </footer>
 
+<script src="script.js"></script>
 </body>
-
 </html>

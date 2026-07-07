@@ -1,65 +1,291 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-<title>Projects</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects — Arav Gupta</title>
 <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<nav>
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="projects.html">Projects</a>
-<a href="cv.html">CV</a>
+<header class="site-header">
+<nav class="nav">
+<a href="index.html" class="nav-brand">ARAV<span>.</span>GUPTA</a>
+<ul class="nav-links">
+<li><a href="index.html"><span class="idx">01_</span>HOME</a></li>
+<li><a href="about.html"><span class="idx">02_</span>ABOUT</a></li>
+<li><a href="projects.html"><span class="idx">03_</span>PROJECTS</a></li>
+<li><a href="blog.html"><span class="idx">04_</span>BLOG</a></li>
+<li><a href="media.html"><span class="idx">05_</span>MEDIA</a></li>
+<li><a href="cv.html"><span class="idx">06_</span>CV</a></li>
+</ul>
 </nav>
+</header>
 
-<h1>Projects</h1>
+<main class="wrap">
 
-<h2>Currently Working On</h2>
+<section style="margin-top:56px;">
+<div class="eyebrow">// 03 PROJECTS</div>
+<h1>Project Log</h1>
+<p class="muted">A running record of what I'm building, what's shipped, and how it was actually put together — not just the poster version.</p>
+</section>
 
+<!-- ================================================================
+  WORKING ON
+================================================================= -->
+<section>
+<div class="eyebrow">// CURRENTLY WORKING ON</div>
 <div class="projects-grid">
 
 <div class="project-card">
-<img src="assets/drone.png">
+<div class="project-visual"><img src="assets/drone.png" alt="Multi-drone tracking"></div>
+<div class="project-body">
+<span class="status-badge active">In Progress</span>
 <h3>Multi-Drone Object Tracking</h3>
-<p>PX4 + ROS2 system enabling multiple drones to track objects.</p>
+<p class="muted">PX4 + ROS2 system enabling multiple drones to cooperatively track objects, with a focus on real-time performance in dynamic environments.</p>
+
+<div class="stack-row">
+<span class="stack-chip">ROS2</span>
+<span class="stack-chip">PX4 SITL</span>
+<span class="stack-chip">Python</span>
+<span class="stack-chip">XBee</span>
+</div>
+
+<details class="impl">
+<summary>Implementation notes</summary>
+<div class="impl-body">
+<p>Each drone runs a lightweight perception node that publishes target detections to a shared tracking bus; a consensus layer resolves overlapping detections across agents before handing a fused estimate back to the flight controller.</p>
+<dl>
+<dt>STACK</dt><dd>ROS2 (rclpy), PX4 SITL, Gazebo, XBee for inter-agent comms</dd>
+<dt>CHALLENGE</dt><dd>Keeping fused-target latency low enough for real-time re-tasking across agents</dd>
+<dt>STATUS</dt><dd>Active — SITL validated, hardware-in-the-loop next</dd>
+</dl>
+</div>
+</details>
+
+<div class="card-links">
+<a href="#">↗ repo (add link)</a>
+<a href="#">↗ write-up (add link)</a>
+</div>
+</div>
 </div>
 
 <div class="project-card">
-<img src="assets/coela.jpg">
+<div class="project-visual"><img src="assets/coela.jpg" alt="Vision-language navigation"></div>
+<div class="project-body">
+<span class="status-badge active">In Progress</span>
 <h3>Vision-Language Navigation</h3>
-<p>Research on embodied agents capable of navigating environments using language instructions.</p>
+<p class="muted">Research on embodied agents that navigate environments from natural-language instructions, with a focus on cooperative multi-agent settings.</p>
+
+<div class="stack-row">
+<span class="stack-chip">PyTorch</span>
+<span class="stack-chip">Habitat / AI2-THOR</span>
+<span class="stack-chip">CLIP-style encoders</span>
 </div>
 
-</div> <!-- IMPORTANT: CLOSE GRID -->
+<details class="impl">
+<summary>Implementation notes</summary>
+<div class="impl-body">
+<p>Working on a novel architecture where a shared language grounding module is queried independently by each agent, then reconciled through a lightweight coordination layer rather than a single centralized planner.</p>
+<dl>
+<dt>STACK</dt><dd>PyTorch, simulated embodied environments</dd>
+<dt>CHALLENGE</dt><dd>Grounding language consistently across agents with different partial observations</dd>
+<dt>STATUS</dt><dd>Active — architecture design &amp; ablations</dd>
+</dl>
+</div>
+</details>
 
+<div class="card-links">
+<a href="#">↗ repo (add link)</a>
+<a href="#">↗ write-up (add link)</a>
+</div>
+</div>
+</div>
 
-<h2>Completed Projects</h2>
+</div>
+</section>
+
+<!-- ================================================================
+  COMPLETED
+================================================================= -->
+<section>
+<div class="eyebrow">// COMPLETED PROJECTS</div>
+<div class="projects-grid">
+
+<div class="project-card">
+<div class="project-visual"><img src="assets/soil.jpg" alt="IoT soil sensing module"></div>
+<div class="project-body">
+<span class="status-badge done">Completed</span>
+<h3>IoT Soil Sensing Module</h3>
+<p class="muted">Precision-agriculture soil monitoring system developed during an ISRO internship.</p>
+
+<div class="stack-row">
+<span class="stack-chip">ESP32</span>
+<span class="stack-chip">LoRa</span>
+<span class="stack-chip">Sensor calibration</span>
+</div>
+
+<details class="impl">
+<summary>Implementation notes</summary>
+<div class="impl-body">
+<p>Deployed a low-power sensor node that logs soil moisture, temperature, and conductivity, transmitting over a long-range link to a base station for field-scale monitoring.</p>
+<dl>
+<dt>STACK</dt><dd>ESP32, LoRa module, custom calibration firmware</dd>
+<dt>OUTCOME</dt><dd>Delivered as part of ISRO internship deliverables</dd>
+</dl>
+</div>
+</details>
+
+<div class="card-links"><a href="#">↗ write-up (add link)</a></div>
+</div>
+</div>
+
+<div class="project-card">
+<div class="project-visual"><img src="assets/aqi.png" alt="Portable AQI monitor"></div>
+<div class="project-body">
+<span class="status-badge done">Completed</span>
+<h3>Portable AQI Monitoring System</h3>
+<p class="muted">Portable air-quality monitoring module calibrated against the CPCB AQI model.</p>
+
+<div class="stack-row">
+<span class="stack-chip">Embedded C</span>
+<span class="stack-chip">Gas sensors</span>
+<span class="stack-chip">CPCB model</span>
+</div>
+
+<details class="impl">
+<summary>Implementation notes</summary>
+<div class="impl-body">
+<p>Combined particulate and gas sensors into a single handheld unit, with on-device calibration curves fitted against the CPCB AQI standard for India.</p>
+<dl>
+<dt>STACK</dt><dd>MCU firmware, PM2.5/PM10 + gas sensors</dd>
+<dt>OUTCOME</dt><dd>Working handheld prototype, field-tested</dd>
+</dl>
+</div>
+</details>
+
+<div class="card-links"><a href="#">↗ write-up (add link)</a></div>
+</div>
+</div>
+
+<div class="project-card">
+<div class="project-visual"><img src="assets/rover.jpeg" alt="Embedded rover control system"></div>
+<div class="project-body">
+<span class="status-badge done">Completed</span>
+<h3>Embedded Rover Control System</h3>
+<p class="muted">STM32-based rover control system using Zigbee communication.</p>
+
+<div class="stack-row">
+<span class="stack-chip">STM32</span>
+<span class="stack-chip">Zigbee</span>
+<span class="stack-chip">Motor control</span>
+</div>
+
+<details class="impl">
+<summary>Implementation notes</summary>
+<div class="impl-body">
+<p>Built the low-level motor control and communication stack for a wheeled rover, with a Zigbee link handling remote command and telemetry.</p>
+<dl>
+<dt>STACK</dt><dd>STM32, Zigbee radios, custom PCB</dd>
+<dt>OUTCOME</dt><dd>Fully working teleoperated rover</dd>
+</dl>
+</div>
+</details>
+
+<div class="card-links"><a href="#">↗ write-up (add link)</a></div>
+</div>
+</div>
+
+<div class="project-card">
+<div class="project-visual"><img src="assets/aqi.png" alt="LoRa environmental monitoring network"></div>
+<div class="project-body">
+<span class="status-badge done">Completed</span>
+<h3>LoRa Environmental Monitoring Network</h3>
+<p class="muted">Distributed sensing system using ESP32 nodes over a LoRa mesh network.</p>
+
+<div class="stack-row">
+<span class="stack-chip">ESP32</span>
+<span class="stack-chip">LoRa mesh</span>
+<span class="stack-chip">Low-power design</span>
+</div>
+
+<details class="impl">
+<summary>Implementation notes</summary>
+<div class="impl-body">
+<p>Several field nodes report environmental readings over a self-forming LoRa mesh, trading range for the low infrastructure cost that made campus-scale deployment practical.</p>
+<dl>
+<dt>STACK</dt><dd>ESP32, LoRa (mesh routing), solar/battery power</dd>
+<dt>OUTCOME</dt><dd>Multi-node mesh deployed and validated</dd>
+</dl>
+</div>
+</details>
+
+<div class="card-links"><a href="#">↗ write-up (add link)</a></div>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- ================================================================
+  PUBLICATIONS & FRAMEWORKS
+  — this section is scaffolded and ready for your real entries.
+  Duplicate the EXAMPLE card below for each publication, implementation,
+  or framework you want to add, then delete the scaffold-note.
+================================================================= -->
+<section>
+<div class="eyebrow">// PUBLICATIONS &amp; FRAMEWORKS</div>
+
+<div class="scaffold-note">
+<strong>Scaffold — replace with your content.</strong> Drop in your
+recent publication(s), implementation(s) of other papers/systems, and
+your new framework here. One card per item; duplicate the example
+below and edit the title, description, stack chips, and links.
+</div>
 
 <div class="projects-grid">
 
 <div class="project-card">
-<img src="assets/soil.jpg">
-<h3>IoT Soil Sensing Module</h3>
-<p>Precision agriculture soil monitoring system developed during ISRO internship.</p>
+<div class="project-body">
+<span class="status-badge active">Example — edit me</span>
+<h3>[Paper / Framework Title]</h3>
+<p class="muted">One or two sentences describing what it is and why it matters — venue/date if it's a publication, or the problem it solves if it's a framework.</p>
+
+<div class="stack-row">
+<span class="stack-chip">tag</span>
+<span class="stack-chip">tag</span>
 </div>
 
-<div class="project-card">
-<img src="assets/aqi.png">
-<h3>Portable AQI Monitoring System</h3>
-<p>Portable air-quality monitoring module calibrated using CPCB AQI model.</p>
+<details class="impl">
+<summary>Implementation notes</summary>
+<div class="impl-body">
+<p>Short note on the approach, what you built, and any notable design decisions.</p>
+<dl>
+<dt>STACK</dt><dd>...</dd>
+<dt>OUTCOME</dt><dd>...</dd>
+</dl>
+</div>
+</details>
+
+<div class="card-links">
+<a href="#">↗ paper (add link)</a>
+<a href="#">↗ code (add link)</a>
+</div>
+</div>
 </div>
 
-<div class="project-card">
-<img src="assets/rover.jpeg">
-<h3>Embedded Rover Control System</h3>
-<p>STM32-based rover control system using Zigbee communication.</p>
 </div>
+</section>
 
+</main>
+
+<footer>
+<div class="wrap">
+<p>EMAIL: aravhfs@gmail.com</p>
+<p>GITHUB: github.com/AravG13</p>
 </div>
+</footer>
 
+<script src="script.js"></script>
 </body>
-
 </html>
