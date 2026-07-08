@@ -1,87 +1,54 @@
 // ============================================================
 // NOW PLAYING — edit this one line to change the embedded track.
-// Paste a normal share link from either service, e.g.:
+// Paste a share link from either service, e.g.:
 //   Spotify:     https://open.spotify.com/track/3n3Ppam7vgaVa1iaRUc9Lp
 //   Apple Music: https://music.apple.com/us/album/xxx/1234567890?i=1234567891
+// NOTE on Apple Music: plain "/song/name/id" permalinks often fail to
+// embed (blank box, no error). Get the reliable link by opening the
+// track inside its ALBUM view, then track's ••• menu -> Share ->
+// "Copy Embed Code", and paste the src="..." URL from that snippet
+// here instead. Pasting an already-"embed.music.apple.com" URL is
+// also fine — it's detected and used as-is below.
 // Leave as "" to hide the widget entirely.
 // ============================================================
-// ============================================================
-// NOW PLAYING
-//
-// Usage:
-//
-// Spotify:
-// const NOW_PLAYING = "https://open.spotify.com/track/3n3Ppam7vgaVa1iaRUc9Lp";
-//
-// Apple Music:
-// const NOW_PLAYING = `<iframe
-// allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write"
-// frameborder="0"
-// height="175"
-// style="width:100%;max-width:660px;overflow:hidden;border-radius:10px;"
-// sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation"
-// src="https://embed.music.apple.com/in/song/rylee-i/1882613332">
-// </iframe>`;
-//
-// Empty string hides the player.
-// ============================================================
+const NOW_PLAYING_URL = "<iframe allow=\"autoplay *; encrypted-media *; fullscreen *; clipboard-write\" frameborder=\"0\" height=\"175\" style=\"width:100%;max-width:660px;overflow:hidden;border-radius:10px;\" sandbox=\"allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation\" src=\"https://embed.music.apple.com/in/song/rylee-i/1882613332\"></iframe>";
 
-const NOW_PLAYING = "<iframe allow=\"autoplay *; encrypted-media *; fullscreen *; clipboard-write\" frameborder=\"0\" height=\"175\" style=\"width:100%;max-width:660px;overflow:hidden;border-radius:10px;\" sandbox=\"allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation\" src=\"https://embed.music.apple.com/in/song/rylee-i/1882613332\"></iframe>";
-
-function mountNowPlaying() {
-    const wrap = document.getElementById("np-frame-wrap");
-    if (!wrap) return;
-
-    const panel = wrap.closest(".now-playing");
-
-    if (!NOW_PLAYING || NOW_PLAYING.trim() === "") {
-        if (panel) panel.style.display = "none";
-        return;
+function buildEmbedSrc(url){
+  if(!url) return null;
+  try{
+    if(url.indexOf("embed.music.apple.com") !== -1 || url.indexOf("open.spotify.com/embed") !== -1){
+      return url; // already an embed src, use as-is
     }
-
-    const input = NOW_PLAYING.trim();
-
-    // --------------------------------------------------------
-    // Apple Music embed iframe
-    // --------------------------------------------------------
-    if (input.startsWith("<iframe")) {
-        wrap.innerHTML = input;
-        return;
+    if(url.indexOf("open.spotify.com") !== -1){
+      return url.replace("open.spotify.com/", "open.spotify.com/embed/") + (url.indexOf("?") !== -1 ? "&" : "?") + "theme=0";
     }
-
-    // --------------------------------------------------------
-    // Spotify share URL
-    // --------------------------------------------------------
-    if (input.includes("open.spotify.com")) {
-        const src =
-            input.replace(
-                "https://open.spotify.com/",
-                "https://open.spotify.com/embed/"
-            ) +
-            (input.includes("?") ? "&" : "?") +
-            "theme=0";
-
-        const iframe = document.createElement("iframe");
-
-        iframe.src = src;
-        iframe.width = "100%";
-        iframe.height = "152";
-        iframe.frameBorder = "0";
-        iframe.loading = "lazy";
-        iframe.allow = "autoplay; clipboard-write; encrypted-media; fullscreen";
-        iframe.title = "Now Playing";
-
-        wrap.appendChild(iframe);
-        return;
+    if(url.indexOf("music.apple.com") !== -1){
+      return url.replace("music.apple.com", "embed.music.apple.com");
     }
-
-    // --------------------------------------------------------
-    // Unsupported input
-    // --------------------------------------------------------
-    console.warn("NOW_PLAYING is neither a Spotify URL nor an Apple Music iframe.");
-
-    if (panel) panel.style.display = "none";
+  }catch(e){ /* fall through */ }
+  return null;
 }
+function mountNowPlaying(){
+  var wrap = document.getElementById("np-frame-wrap");
+  if(!wrap) return;
+  var src = buildEmbedSrc(NOW_PLAYING_URL);
+  var panel = wrap.closest(".now-playing");
+  if(!src){
+    if(panel) panel.style.display = "none";
+    return;
+  }
+  var isApple = NOW_PLAYING_URL.indexOf("music.apple.com") !== -1;
+  var iframe = document.createElement("iframe");
+  iframe.src = src;
+  iframe.width = "100%";
+  iframe.height = isApple ? "150" : "152";
+  iframe.frameBorder = "0";
+  iframe.allow = "autoplay; encrypted-media; fullscreen; clipboard-write";
+  iframe.loading = "lazy";
+  iframe.title = "Now playing";
+  wrap.appendChild(iframe);
+}
+
 // ============================================================
 // Telemetry HUD — small fixed status widget, purely decorative.
 // Shows local time and cycles through a few status lines.
