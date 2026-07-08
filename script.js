@@ -11,8 +11,7 @@
 // also fine — it's detected and used as-is below.
 // Leave as "" to hide the widget entirely.
 // ============================================================
-const NOW_PLAYING_URL = "<iframe allow=\"autoplay *; encrypted-media *; fullscreen *; clipboard-write\" frameborder=\"0\" height=\"175\" style=\"width:100%;max-width:660px;overflow:hidden;border-radius:10px;\" sandbox=\"allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation\" src=\"https://embed.music.apple.com/in/song/rylee-i/1882613332\"></iframe>";
-
+const NOW_PLAYING_URL = "https://embed.music.apple.com/in/song/rylee-i/1882613332";
 function buildEmbedSrc(url){
   if(!url) return null;
   try{
