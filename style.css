@@ -492,6 +492,50 @@ footer p{ margin:0; font-family:var(--f-mono); font-size:12px; color:var(--muted
   50%{ opacity:0.4; }
 }
 
+/* ---------------- now playing (floating, stacks above HUD) ---------------- */
+
+.now-playing-hud{
+  position:fixed;
+  bottom:60px;
+  right:18px;
+  z-index:59;
+  width:280px;
+  background:rgba(16,24,32,0.96);
+  border-radius:6px;
+  box-shadow:0 8px 20px rgba(16,24,32,0.25);
+  overflow:hidden;
+}
+
+.now-playing-hud .np-label{
+  width:100%;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  font-family:var(--f-mono);
+  font-size:10.5px;
+  letter-spacing:0.06em;
+  color:#D8E2EA;
+  background:none;
+  border:none;
+  padding:9px 12px;
+  cursor:pointer;
+  text-align:left;
+}
+
+.now-playing-hud .signal-dot{ color:var(--signal); }
+.now-playing-hud .np-toggle{ margin-left:auto; color:#4A5A68; transition:transform 0.15s; }
+.now-playing-hud.collapsed .np-toggle{ transform:rotate(-90deg); }
+
+.now-playing-hud .np-frame-wrap{
+  max-height:170px;
+  overflow:hidden;
+  transition:max-height 0.2s ease;
+}
+
+.now-playing-hud.collapsed .np-frame-wrap{ max-height:0; }
+
+.now-playing-hud iframe{ display:block; border-radius:0 0 6px 6px; }
+
 /* ---------------- responsive ---------------- */
 
 @media (max-width:640px){
@@ -502,6 +546,7 @@ footer p{ margin:0; font-family:var(--f-mono); font-size:12px; color:var(--muted
   h1{ font-size:32px; }
   .post-row{ grid-template-columns:1fr; gap:6px; }
   .hud{ left:12px; right:12px; bottom:12px; justify-content:center; }
+  .now-playing-hud{ left:12px; right:12px; width:auto; bottom:56px; }
   .log-table{ font-size:13px; }
   .log-table thead{ display:none; }
   .log-table, .log-table tbody, .log-table tr, .log-table td{ display:block; width:100%; }

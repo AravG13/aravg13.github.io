@@ -28,14 +28,20 @@ function buildEmbedSrc(url){
   return null;
 }
 function mountNowPlaying(){
-  var wrap = document.getElementById("np-frame-wrap");
-  if(!wrap) return;
   var src = buildEmbedSrc(NOW_PLAYING_URL);
-  var panel = wrap.closest(".now-playing");
-  if(!src){
-    if(panel) panel.style.display = "none";
-    return;
-  }
+  if(!src) return; // nothing to show, skip entirely
+
+  var panel = document.createElement("div");
+  panel.className = "now-playing-hud";
+
+  var label = document.createElement("button");
+  label.className = "np-label";
+  label.type = "button";
+  label.innerHTML = '<span class="signal-dot">♪</span> NOW PLAYING <span class="np-toggle">▾</span>';
+
+  var frameWrap = document.createElement("div");
+  frameWrap.className = "np-frame-wrap";
+
   var isApple = NOW_PLAYING_URL.indexOf("music.apple.com") !== -1;
   var iframe = document.createElement("iframe");
   iframe.src = src;
@@ -45,7 +51,15 @@ function mountNowPlaying(){
   iframe.allow = "autoplay; encrypted-media; fullscreen; clipboard-write";
   iframe.loading = "lazy";
   iframe.title = "Now playing";
-  wrap.appendChild(iframe);
+  frameWrap.appendChild(iframe);
+
+  label.addEventListener("click", function(){
+    panel.classList.toggle("collapsed");
+  });
+
+  panel.appendChild(label);
+  panel.appendChild(frameWrap);
+  document.body.appendChild(panel);
 }
 
 // ============================================================
