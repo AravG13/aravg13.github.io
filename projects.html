@@ -27,7 +27,7 @@
 <section style="margin-top:56px;">
 <div class="eyebrow">// 03 PROJECTS</div>
 <h1>Project Log</h1>
-<p class="muted">A running record of what I'm building, what's shipped, and how it was actually put together — not just the poster version.</p>
+<p class="muted">A record of what I've worked on in the past and am currently working on, will keep updating implementation details and links with time.</p>
 </section>
 
 <!-- ================================================================
@@ -37,28 +37,28 @@
 <div class="eyebrow">// CURRENTLY WORKING ON</div>
 <div class="projects-grid">
 
+
 <div class="project-card">
-<div class="project-visual"><img src="assets/drone.png" alt="Multi-drone tracking"></div>
+<div class="project-visual"><img src="assets/ecucps.jpeg" alt="Multi-UAV-UGV Persistent Surveillance Problem"></div>
 <div class="project-body">
 <span class="status-badge active">In Progress</span>
-<h3>Multi-Drone Object Tracking</h3>
-<p class="muted">PX4 + ROS2 system enabling multiple drones to cooperatively track objects, with a focus on real-time performance in dynamic environments.</p>
+<h3>Multi-UAV-UGV Persistent Surveillance Problem</h3>
+<p class="muted">Developing a system for coordinated surveillance using multiple UAVs and UGVs, inspired by prior work.</p>
 
 <div class="stack-row">
-<span class="stack-chip">ROS2</span>
-<span class="stack-chip">PX4 SITL</span>
-<span class="stack-chip">Python</span>
-<span class="stack-chip">XBee</span>
+<span class="stack-chip">PyTorch</span>
+<span class="stack-chip">Gym</span>
+<span class="stack-chip">Attention Models</span>
 </div>
 
 <details class="impl">
 <summary>Implementation notes</summary>
 <div class="impl-body">
-<p>Each drone runs a lightweight perception node that publishes target detections to a shared tracking bus; a consensus layer resolves overlapping detections across agents before handing a fused estimate back to the flight controller.</p>
+<p>Working on a system for coordinated surveillance using multiple UAVs and UGVs, using methods detailed and implemented in work by Safwan Mondal.</p>
 <dl>
-<dt>STACK</dt><dd>ROS2 (rclpy), PX4 SITL, Gazebo, XBee for inter-agent comms</dd>
-<dt>CHALLENGE</dt><dd>Keeping fused-target latency low enough for real-time re-tasking across agents</dd>
-<dt>STATUS</dt><dd>Active — SITL validated, hardware-in-the-loop next</dd>
+<dt>STACK</dt><dd>PyTorch, simulated reinforcement learning environments</dd>
+<dt>CHALLENGE</dt><dd>Maintaining persistent surveillance over mission points with multiple UAVs and UGVs.</dd>
+<dt>STATUS</dt><dd>Active — sortie-based dual UAV deployment </dd>
 </dl>
 </div>
 </details>
@@ -71,11 +71,11 @@
 </div>
 
 <div class="project-card">
-<div class="project-visual"><img src="assets/coela.jpg" alt="Vision-language navigation"></div>
+<div class="project-visual"><img src="assets/coela.jpg" alt="Cooperative Embodied Language Agents"></div>
 <div class="project-body">
 <span class="status-badge active">In Progress</span>
-<h3>Vision-Language Navigation</h3>
-<p class="muted">Research on embodied agents that navigate environments from natural-language instructions, with a focus on cooperative multi-agent settings.</p>
+<h3>Cooperative Embodied Language Agents</h3>
+<p class="muted">Working on developing a novel architecture for cooperative, language-conditioned embodied agent system based on belief graphs.</p>
 
 <div class="stack-row">
 <span class="stack-chip">PyTorch</span>
@@ -110,7 +110,43 @@
 ================================================================= -->
 <section>
 <div class="eyebrow">// COMPLETED PROJECTS</div>
+
+
 <div class="projects-grid">
+
+
+<div class="project-card">
+<div class="project-visual"><img src="assets/drone.png" alt="Multi-drone tracking"></div>
+<div class="project-body">
+<span class="status-badge active">In Progress</span>
+<h3>Multi-Drone Object Tracking</h3>
+<p class="muted">PX4 + ROS2 system enabling multiple drones to cooperatively track objects, with a focus on real-time performance in dynamic environments.</p>
+
+<div class="stack-row">
+<span class="stack-chip">ROS2</span>
+<span class="stack-chip">PX4 SITL</span>
+<span class="stack-chip">Python</span>
+<span class="stack-chip">XBee</span>
+</div>
+
+<details class="impl">
+<summary>Implementation notes</summary>
+<div class="impl-body">
+<p>Each drone runs a lightweight perception node that publishes target detections to a shared tracking bus; a consensus layer resolves overlapping detections across agents before handing a fused estimate back to the flight controller.</p>
+<dl>
+<dt>STACK</dt><dd>ROS2 (rclpy), PX4 SITL, Gazebo, XBee for inter-agent comms</dd>
+<dt>CHALLENGE</dt><dd>Keeping fused-target latency low enough for real-time re-tasking across agents</dd>
+<dt>STATUS</dt><dd>Active — SITL validated, hardware-in-the-loop next</dd>
+</dl>
+</div>
+</details>
+
+<div class="card-links">
+<a href="#">↗ repo (add link)</a>
+<a href="#">↗ write-up (add link)</a>
+</div>
+</div>
+</div>
 
 <div class="project-card">
 <div class="project-visual"><img src="assets/soil.jpg" alt="IoT soil sensing module"></div>
@@ -248,12 +284,14 @@ below and edit the title, description, stack chips, and links.
 <div class="project-card">
 <div class="project-body">
 <span class="status-badge active">Example — edit me</span>
-<h3>[Paper / Framework Title]</h3>
-<p class="muted">One or two sentences describing what it is and why it matters — venue/date if it's a publication, or the problem it solves if it's a framework.</p>
+<h3>Early to Share, Late to Save: Synchronisation-Driven Communication Gating in Bandwidth-Constrained Cooperative VLN</h3>
+<p class="muted">This paper presents a novel approach to communication gating in vision-language navigation tasks, addressing bandwidth constraints in cooperative settings.  Proposes a lightweight supervised gate that labels
+communication-critical steps post-hoc from navigation failures, avoiding
+the high variance of REINFORCE.</p>
 
 <div class="stack-row">
-<span class="stack-chip">tag</span>
-<span class="stack-chip">tag</span>
+<span class="stack-chip">Multi-Agent Systems</span>
+<span class="stack-chip">VLN</span>
 </div>
 
 <details class="impl">
@@ -269,7 +307,7 @@ below and edit the title, description, stack chips, and links.
 
 <div class="card-links">
 <a href="#">↗ paper (add link)</a>
-<a href="#">↗ code (add link)</a>
+<a href="#">↗ \hyperlink{code}{https://github.com/AravG13/bandwidth-constrained-cooperative-vln}</a>
 </div>
 </div>
 </div>
