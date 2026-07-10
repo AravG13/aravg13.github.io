@@ -181,10 +181,26 @@ function mountNowPlaying(){
     });
   }
 
+  function initMediaFilters(){
+    document.addEventListener("click", function(e){
+      var btn = e.target.closest(".media-filter");
+      if(!btn) return;
+      var scope = btn.closest(".media-toolbar") || document;
+      scope.querySelectorAll(".media-filter").forEach(function(b){ b.classList.remove("active"); });
+      btn.classList.add("active");
+      var filter = btn.getAttribute("data-filter");
+      document.querySelectorAll(".media-card").forEach(function(card){
+        var match = filter === "all" || card.getAttribute("data-type") === filter;
+        card.classList.toggle("is-hidden", !match);
+      });
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", function(){
     mountHud();
     markActiveNav();
     mountNowPlaying();
     initRouter();
+    initMediaFilters();
   });
 })();
