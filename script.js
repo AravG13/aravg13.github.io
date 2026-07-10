@@ -118,9 +118,73 @@ function mountNowPlaying(){
     });
   }
 
+  // ============================================================
+  // Lightweight client-side router.
+  // Intercepts internal nav clicks and swaps only <main>'s content
+  // via fetch, instead of doing a full page reload. This is what
+  // keeps the now-playing iframe alive when navigating between
+  // pages (header/footer/HUD/widget live outside <main>, so they're
+  // never touched). Falls back to a real navigation if fetch fails
+  // for any reason (offline, opened via file://, etc).
+  // ============================================================
+
+  function isInternalNavLink(a){
+    if(!a) return false;
+    if(a.target === "_blank") return false;
+    if(a.hasAttribute("download")) return false;
+    var href = a.getAttribute("href");
+    if(!href || href.indexOf("#") === 0) return false;
+    if(/^(mailto:|tel:|javascript:)/i.test(href)) return false;
+    var resolved;
+    try{ resolved = new URL(href, window.location.href); }catch(e){ return false; }
+    if(resolved.hostname !== window.location.hostname) return false;
+    if(resolved.pathname === window.location.pathname && resolved.hash) return false;
+    return /\.html?$/i.test(resolved.pathname);
+  }
+
+  function swapContent(html){
+    var doc = new DOMParser().parseFromString(html, "text/html");
+    var newMain = doc.querySelector("main");
+    var curMain = document.querySelector("main");
+    if(!newMain || !curMain) return false;
+    curMain.innerHTML = newMain.innerHTML;
+    document.title = doc.title || document.title;
+    window.scrollTo(0, 0);
+    document.querySelectorAll(".nav-links a.active").forEach(function(a){ a.classList.remove("active"); });
+    markActiveNav();
+    return true;
+  }
+
+  function loadPage(url, push){
+    fetch(url).then(function(res){
+      if(!res.ok) throw new Error("bad response");
+      return res.text();
+    }).then(function(html){
+      if(!swapContent(html)){ window.location.href = url; return; }
+      if(push) history.pushState({}, "", url);
+    }).catch(function(){
+      window.location.href = url; // graceful fallback: real navigation
+    });
+  }
+
+  function initRouter(){
+    document.addEventListener("click", function(e){
+      if(e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var a = e.target.closest("a");
+      if(!isInternalNavLink(a)) return;
+      e.preventDefault();
+      loadPage(new URL(a.getAttribute("href"), window.location.href).href, true);
+    });
+
+    window.addEventListener("popstate", function(){
+      loadPage(window.location.href, false);
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", function(){
     mountHud();
     markActiveNav();
     mountNowPlaying();
+    initRouter();
   });
 })();

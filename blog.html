@@ -27,16 +27,33 @@
 <section style="margin-top:56px;">
 <div class="eyebrow">// 04 BLOG</div>
 <h1>Notes &amp; Writing</h1>
-<p class="muted">Longer-form notes — research logs, build write-ups, and whatever else is on my mind.</p>
+<p class="muted">Longer-form notes on the left in words, on the right in pictures — research logs, build write-ups, and whatever else is on my mind.</p>
 </section>
 
 <div class="scaffold-note">
-<strong>Scaffold — replace with your content.</strong> This page lists
-posts as rows pulled from <code>blog/</code>. To add a real post:
-duplicate <code>blog/post-template.html</code>, write it, then add a
-matching row below (date, title linking to the file, short excerpt,
-tags). Delete the example row once you have real posts.
+<strong>Scaffold — replace with your content.</strong> Left column:
+duplicate a <code>.polaroid</code> block per photo (swap the
+<code>src</code>, edit the caption). Right column: duplicate
+<code>blog/post-template.html</code> per post, then add a matching
+<code>.post-row</code> below linking to it. Delete the example blocks
+once you have real content. Both columns scroll independently once
+there's enough content to overflow.
 </div>
+
+<div class="blog-split">
+
+<div class="blog-col polaroid-col">
+<div class="col-heading">// snapshots</div>
+
+<div class="polaroid">
+<img src="assets/me.jpeg" alt="">
+<div class="polaroid-caption">[caption goes here]</div>
+</div>
+
+</div>
+
+<div class="blog-col posts-col">
+<div class="col-heading">// posts</div>
 
 <section class="post-list">
 
@@ -53,6 +70,9 @@ tags). Delete the example row once you have real posts.
 </div>
 
 </section>
+</div>
+
+</div>
 
 </main>
 

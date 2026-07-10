@@ -27,41 +27,73 @@
 <section style="margin-top:56px;">
 <div class="eyebrow">// 05 MEDIA LOG</div>
 <h1>What I'm Consuming</h1>
-<p class="muted">Films, books, shows — a running log, logbook-style. Not reviews, just a record.</p>
+<p class="muted">Music, books, films &amp; shows — a running log, not reviews. Each card links out to where I actually tracked it.</p>
 </section>
 
 <div class="scaffold-note">
-<strong>Scaffold — replace with your content.</strong> Add a
-<code>&lt;tr&gt;</code> row per entry below. TYPE is FILM / BOOK / SHOW /
-ALBUM etc. STATUS is FINISHED / IN-PROGRESS / DROPPED. RATING is
-whatever scale you like (e.g. out of 5). Delete the example row once
-you have real entries.
+<strong>Scaffold — replace with your content.</strong> Three card
+types below (music / book / film), each marked <code>data-type</code>
+so the filter buttons work. Duplicate whichever card matches, swap the
+cover image, title, subtitle, rating, and the link's <code>href</code>
++ label (Apple Music / Spotify, Goodreads, Letterboxd, etc.). Delete
+the example cards once you have real entries.
 </div>
 
-<table class="log-table">
-<thead>
-<tr>
-<th>Date</th>
-<th>Type</th>
-<th>Title</th>
-<th>Status</th>
-<th>Rating</th>
-<th>Notes</th>
-</tr>
-</thead>
-<tbody>
+<div class="media-toolbar">
+<button class="media-filter active" data-filter="all">All</button>
+<button class="media-filter" data-filter="music">Music</button>
+<button class="media-filter" data-filter="book">Books</button>
+<button class="media-filter" data-filter="film">Film &amp; TV</button>
+</div>
 
-<tr>
-<td>0000.00</td>
-<td class="log-type">EXAMPLE</td>
-<td><b>[Title Goes Here]</b></td>
-<td class="log-status">FINISHED</td>
-<td class="rating">★★★★☆</td>
-<td class="muted">Short note on it, if any.</td>
-</tr>
+<div class="media-grid">
 
-</tbody>
-</table>
+<!-- MUSIC CARD -->
+<div class="media-card" data-type="music">
+<div class="media-cover"><img src="assets/aqi.png" alt="[Album/track cover]"></div>
+<div class="media-body">
+<span class="media-type-badge">♪ Music</span>
+<h3 class="media-title">[Track or Album Title]</h3>
+<p class="media-sub">[Artist]</p>
+<div class="media-meta-row">
+<span>ON REPEAT</span>
+<span class="media-rating">★★★★☆</span>
+</div>
+<a class="media-link" href="#" target="_blank" rel="noopener">↗ Apple Music</a>
+</div>
+</div>
+
+<!-- BOOK CARD -->
+<div class="media-card" data-type="book">
+<div class="media-cover"><img src="assets/soil.jpg" alt="[Book cover]"></div>
+<div class="media-body">
+<span class="media-type-badge">▤ Book</span>
+<h3 class="media-title">[Book Title]</h3>
+<p class="media-sub">[Author]</p>
+<div class="media-meta-row">
+<span>READING</span>
+<span class="media-rating">★★★★☆</span>
+</div>
+<a class="media-link" href="#" target="_blank" rel="noopener">↗ Goodreads</a>
+</div>
+</div>
+
+<!-- FILM / SHOW CARD -->
+<div class="media-card" data-type="film">
+<div class="media-cover"><img src="assets/rover.jpeg" alt="[Poster]"></div>
+<div class="media-body">
+<span class="media-type-badge">▶ Film</span>
+<h3 class="media-title">[Film or Show Title]</h3>
+<p class="media-sub">[Director / Year]</p>
+<div class="media-meta-row">
+<span>FINISHED</span>
+<span class="media-rating">★★★★☆</span>
+</div>
+<a class="media-link" href="#" target="_blank" rel="noopener">↗ Letterboxd</a>
+</div>
+</div>
+
+</div>
 
 </main>
 
