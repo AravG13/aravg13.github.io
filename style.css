@@ -354,6 +354,82 @@ details.impl .impl-body{
 
 .scaffold-note strong{ color:var(--ink); }
 
+/* ---------------- blog: split scrollable layout ---------------- */
+
+.blog-split{
+  display:grid;
+  grid-template-columns:300px 1fr;
+  gap:36px;
+  align-items:start;
+  margin-top:28px;
+}
+
+.blog-col{
+  max-height:calc(100vh - 230px);
+  min-height:360px;
+  overflow-y:auto;
+  padding-right:10px;
+}
+
+.blog-col::-webkit-scrollbar{ width:6px; }
+.blog-col::-webkit-scrollbar-track{ background:transparent; }
+.blog-col::-webkit-scrollbar-thumb{ background:var(--hair-line); border-radius:3px; }
+
+.col-heading{
+  font-family:var(--f-mono);
+  font-size:11px;
+  letter-spacing:0.06em;
+  color:var(--muted);
+  text-transform:uppercase;
+  margin:0 0 16px;
+  position:sticky;
+  top:0;
+  background:var(--paper);
+  padding-bottom:4px;
+}
+
+/* polaroid photo cards */
+
+.polaroid{
+  background:#fff;
+  padding:10px 10px 22px;
+  margin:0 auto 30px;
+  max-width:250px;
+  box-shadow:0 8px 18px rgba(16,24,32,0.14);
+  border:1px solid rgba(16,24,32,0.05);
+  transform:rotate(var(--tilt,-1.4deg));
+  transition:transform 0.2s ease;
+}
+
+.polaroid:hover{ transform:rotate(0deg) scale(1.02); }
+
+.polaroid:nth-child(3n+2){ --tilt:1.6deg; }
+.polaroid:nth-child(3n){ --tilt:-0.6deg; }
+
+.polaroid img{
+  width:100%;
+  aspect-ratio:1/1;
+  object-fit:cover;
+  display:block;
+  filter:grayscale(8%) contrast(1.02);
+  background:var(--paper);
+}
+
+.polaroid-caption{
+  font-family:var(--f-mono);
+  font-size:11.5px;
+  color:var(--ink);
+  text-align:center;
+  padding-top:12px;
+  letter-spacing:0.01em;
+}
+
+@media (max-width:900px){
+  .blog-split{ grid-template-columns:1fr; }
+  .blog-col{ max-height:none; overflow-y:visible; padding-right:0; }
+  .col-heading{ position:static; }
+}
+
 /* ---------------- blog ---------------- */
 
 .post-list{ margin-top:20px; }
@@ -392,6 +468,109 @@ article.post h1{ margin-bottom:8px; }
 article.post p{ font-size:16px; }
 
 /* ---------------- media log ---------------- */
+
+.media-toolbar{
+  display:flex;
+  gap:8px;
+  margin:24px 0 4px;
+  flex-wrap:wrap;
+}
+
+.media-filter{
+  font-family:var(--f-mono);
+  font-size:11.5px;
+  letter-spacing:0.03em;
+  text-transform:uppercase;
+  color:var(--blueprint);
+  background:var(--paper-card);
+  border:1px solid var(--hair-line);
+  padding:6px 13px;
+  border-radius:3px;
+  cursor:pointer;
+}
+
+.media-filter:hover{ border-color:var(--blueprint-2); }
+.media-filter.active{ background:var(--ink); color:#fff; border-color:var(--ink); }
+
+.media-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(190px,1fr));
+  gap:22px;
+  margin-top:22px;
+}
+
+.media-card{
+  background:var(--paper-card);
+  border:1px solid var(--hair-line);
+  border-top:3px solid var(--accent, var(--blueprint));
+  border-radius:4px;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  transition:transform 0.18s, box-shadow 0.18s;
+}
+
+.media-card:hover{ transform:translateY(-3px); box-shadow:0 10px 22px rgba(16,24,32,0.12); }
+
+.media-card[data-type="music"]{ --accent:var(--signal); }
+.media-card[data-type="book"]{ --accent:var(--blueprint); }
+.media-card[data-type="film"]{ --accent:var(--ok); }
+
+.media-card.is-hidden{ display:none; }
+
+.media-cover{
+  width:100%;
+  aspect-ratio:1/1;
+  background:var(--paper);
+  overflow:hidden;
+}
+
+.media-card[data-type="book"] .media-cover,
+.media-card[data-type="film"] .media-cover{ aspect-ratio:2/3; }
+
+.media-cover img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+.media-body{ padding:12px 14px 14px; display:flex; flex-direction:column; gap:5px; flex:1; }
+
+.media-type-badge{
+  font-family:var(--f-mono);
+  font-size:10px;
+  letter-spacing:0.06em;
+  text-transform:uppercase;
+  color:var(--accent);
+}
+
+.media-title{ font-family:var(--f-display); font-size:15px; font-weight:600; margin:0; line-height:1.28; }
+.media-sub{ font-size:12.5px; color:var(--muted); margin:0; }
+
+.media-meta-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:4px;
+  font-family:var(--f-mono);
+  font-size:11px;
+  color:var(--muted);
+}
+
+.media-rating{ color:var(--signal); letter-spacing:1px; }
+
+.media-link{
+  margin-top:8px;
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  align-self:flex-start;
+  font-family:var(--f-mono);
+  font-size:11.5px;
+  text-decoration:none;
+  color:var(--accent);
+  border:1px solid var(--accent);
+  padding:5px 10px;
+  border-radius:3px;
+}
+
+.media-link:hover{ background:var(--accent); color:#fff; }
 
 .log-table{
   width:100%;
