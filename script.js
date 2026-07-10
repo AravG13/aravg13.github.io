@@ -107,10 +107,13 @@ function mountNowPlaying(){
     }
   }
 
-  // Mark the current page's nav link as active.
-  function markActiveNav(){
-    var path = window.location.pathname.split("/").pop() || "index.html";
+  // Mark the current page's nav link as active. Accepts an explicit
+  // URL (used by the router, before history.pushState has run) or
+  // falls back to window.location for a normal page load.
+  function markActiveNav(url){
+    var path = new URL(url || window.location.href, window.location.href).pathname.split("/").pop() || "index.html";
     document.querySelectorAll(".nav-links a").forEach(function(a){
+      a.classList.remove("active");
       var href = a.getAttribute("href");
       if(href === path || (path === "" && href === "index.html")){
         a.classList.add("active");
@@ -142,7 +145,7 @@ function mountNowPlaying(){
     return /\.html?$/i.test(resolved.pathname);
   }
 
-  function swapContent(html){
+  function swapContent(html, url){
     var doc = new DOMParser().parseFromString(html, "text/html");
     var newMain = doc.querySelector("main");
     var curMain = document.querySelector("main");
@@ -150,8 +153,7 @@ function mountNowPlaying(){
     curMain.innerHTML = newMain.innerHTML;
     document.title = doc.title || document.title;
     window.scrollTo(0, 0);
-    document.querySelectorAll(".nav-links a.active").forEach(function(a){ a.classList.remove("active"); });
-    markActiveNav();
+    markActiveNav(url);
     return true;
   }
 
@@ -160,7 +162,7 @@ function mountNowPlaying(){
       if(!res.ok) throw new Error("bad response");
       return res.text();
     }).then(function(html){
-      if(!swapContent(html)){ window.location.href = url; return; }
+      if(!swapContent(html, url)){ window.location.href = url; return; }
       if(push) history.pushState({}, "", url);
     }).catch(function(){
       window.location.href = url; // graceful fallback: real navigation
