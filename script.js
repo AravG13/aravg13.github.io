@@ -11,7 +11,7 @@
 // also fine — it's detected and used as-is below.
 // Leave as "" to hide the widget entirely.
 // ============================================================
-const NOW_PLAYING_URL = "https://embed.music.apple.com/in/song/rylee-i/1882613332";
+const NOW_PLAYING_URL = "https://embed.music.apple.com/in/album/ladies-and-gentlemen-we-are-floating-in-space/1502476612?i=1502476617";
 function buildEmbedSrc(url){
   if(!url) return null;
   try{
@@ -60,6 +60,110 @@ function mountNowPlaying(){
   panel.appendChild(label);
   panel.appendChild(frameWrap);
   document.body.appendChild(panel);
+}
+
+// ============================================================
+// Nebula field — a handful of large, softly blurred, additively-
+// blended color blobs plus two elongated "distant galaxy" smudges,
+// sitting behind the starfield. Positions/colors are hand-tuned
+// (not randomized) so the composition looks intentional rather than
+// noisy. Mounted once, outside <main>, persists across router swaps.
+// ============================================================
+
+var NEBULA_BLOBS = [
+  { top:"-8%",  left:"58%", w:640, h:520, color:"rgba(111,163,224,0.30)" },  // starlight blue, upper right
+  { top:"8%",   left:"2%",  w:520, h:460, color:"rgba(224,85,158,0.20)" },   // magenta, upper left
+  { top:"28%",  left:"70%", w:460, h:420, color:"rgba(255,158,92,0.18)" },   // cliffs-orange, mid right
+  { top:"58%",  left:"-6%", w:560, h:480, color:"rgba(139,107,255,0.20)" }, // deep purple, lower left
+  { top:"72%",  left:"55%", w:600, h:520, color:"rgba(87,201,160,0.16)" },  // teal, lower right
+  { top:"42%",  left:"32%", w:380, h:340, color:"rgba(255,211,122,0.10)" } // warm gold, center accent
+];
+
+var NEBULA_GALAXIES = [
+  { top:"14%", left:"82%", w:180, h:60, rotate:-22, color:"rgba(224,85,158,0.28)" },
+  { top:"82%", left:"12%", w:150, h:50, rotate:18,  color:"rgba(111,163,224,0.24)" }
+];
+
+function mountNebulaField(){
+  var field = document.createElement("div");
+  field.className = "nebula-field";
+  field.setAttribute("aria-hidden", "true");
+
+  NEBULA_BLOBS.forEach(function(b){
+    var el = document.createElement("div");
+    el.className = "nebula-blob";
+    el.style.top = b.top;
+    el.style.left = b.left;
+    el.style.width = b.w + "px";
+    el.style.height = b.h + "px";
+    el.style.background = "radial-gradient(circle, " + b.color + ", transparent 70%)";
+    field.appendChild(el);
+  });
+
+  NEBULA_GALAXIES.forEach(function(g){
+    var el = document.createElement("div");
+    el.className = "nebula-galaxy";
+    el.style.top = g.top;
+    el.style.left = g.left;
+    el.style.width = g.w + "px";
+    el.style.height = g.h + "px";
+    el.style.transform = "rotate(" + g.rotate + "deg)";
+    el.style.background = "radial-gradient(ellipse, " + g.color + ", transparent 75%)";
+    field.appendChild(el);
+  });
+
+  document.body.prepend(field);
+}
+
+// ============================================================
+// Starfield — generates layers of randomly-scattered "stars"
+// using the classic box-shadow trick (one 1px dot, many shadow
+// copies at random positions), plus a handful of larger "hero"
+// stars with a soft glow bloom. Mounted once, outside <main>, so it
+// persists across the router's page swaps like the HUD does.
+// ============================================================
+
+function generateStarShadows(count, opacity){
+  var shadows = [];
+  for(var i = 0; i < count; i++){
+    var x = (Math.random() * 100).toFixed(2);
+    var y = (Math.random() * 100).toFixed(2);
+    shadows.push(x + "vw " + y + "vh 0 rgba(255,255,255," + opacity + ")");
+  }
+  return shadows.join(",");
+}
+
+function mountStarfield(){
+  var field = document.createElement("div");
+  field.className = "starfield";
+  field.setAttribute("aria-hidden", "true");
+
+  var layer1 = document.createElement("div");
+  layer1.className = "star-layer star-layer-1";
+  layer1.style.boxShadow = generateStarShadows(180, 0.9);
+
+  var layer2 = document.createElement("div");
+  layer2.className = "star-layer star-layer-2";
+  layer2.style.boxShadow = generateStarShadows(110, 0.5);
+
+  field.appendChild(layer1);
+  field.appendChild(layer2);
+
+  var heroCount = 9;
+  for(var i = 0; i < heroCount; i++){
+    var hero = document.createElement("div");
+    hero.className = "star-hero";
+    var size = 2 + Math.random() * 1.5;
+    hero.style.width = size + "px";
+    hero.style.height = size + "px";
+    hero.style.top = (Math.random() * 100).toFixed(2) + "vh";
+    hero.style.left = (Math.random() * 100).toFixed(2) + "vw";
+    hero.style.boxShadow = "0 0 " + (size * 3) + "px " + (size * 1.2) + "px rgba(255,255,255,0.55)";
+    hero.style.animationDelay = (Math.random() * 4).toFixed(2) + "s";
+    field.appendChild(hero);
+  }
+
+  document.body.prepend(field);
 }
 
 // ============================================================
@@ -199,6 +303,8 @@ function mountNowPlaying(){
   }
 
   document.addEventListener("DOMContentLoaded", function(){
+    mountNebulaField();
+    mountStarfield();
     mountHud();
     markActiveNav();
     mountNowPlaying();
